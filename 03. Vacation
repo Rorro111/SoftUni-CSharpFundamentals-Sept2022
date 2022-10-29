@@ -1,0 +1,111 @@
+
+namespace _3._Vacation
+{
+
+    using System;
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            //	        Friday   Saturday        Sunday
+            //students   8.45	     9.80	       10.46
+            //buss      10.90	    15.60	       16
+            //reg       15	        20	           22.50
+
+            int countOfGroup = int.Parse(Console.ReadLine());
+            string typeOfGroup = Console.ReadLine();
+            string dayOfWeek = Console.ReadLine();
+
+            double totalPrice = 0;
+
+            switch (dayOfWeek)
+            {
+                case "Friday":
+                    if (typeOfGroup == "Students")
+                    {
+                        totalPrice = countOfGroup * 8.45;
+                    }
+
+                    else if (typeOfGroup == "Business")
+                    {
+                        totalPrice = countOfGroup * 10.90;
+                    }
+
+                    else if (typeOfGroup == "Regular")
+                    {
+                        totalPrice = countOfGroup * 15.00;
+                    }
+                    break;
+
+                case "Saturday":
+                    if (typeOfGroup == "Students")
+                    {
+                        totalPrice = countOfGroup * 9.80;
+                    }
+
+                    else if (typeOfGroup == "Business")
+                    {
+                        totalPrice = countOfGroup * 15.60;
+                    }
+
+                    else if (typeOfGroup == "Regular")
+                    {
+                        totalPrice = countOfGroup * 20.00;
+                    }
+                    break;
+
+                default:
+                    if (typeOfGroup == "Students")
+                    {
+                        totalPrice = countOfGroup * 10.46;
+                    }
+
+                    else if (typeOfGroup == "Business")
+                    {
+                        totalPrice = countOfGroup * 16.00;
+                    }
+
+                    else if (typeOfGroup == "Regular")
+                    {
+                        totalPrice = countOfGroup * 22.50;
+                    }
+                    break;
+
+                    // For Students – if the group is 30 or more people, you should reduce the total price by 15 %.
+                    // For Business – if the group is 100 or more people, 10 of the people stay for free.
+                    // For Regular – if the group is between 10 and 20  people(both inclusively), reduce the total price by 5 %.
+
+                    if (countOfGroup >= 30 && typeOfGroup == "Students")
+                    {
+                        totalPrice -= 0.15;
+                    }
+
+                    else if (countOfGroup >= 100 && typeOfGroup == "Business")
+                    {
+                        if (dayOfWeek == "Friday")
+                        {
+                            totalPrice = (countOfGroup - 10) * 10.90;
+                        }
+
+                        else if (dayOfWeek == "Saturday")
+                        {
+                            totalPrice = (countOfGroup - 10) * 15.60;
+                        }
+
+                        else
+                        { 
+                            totalPrice = (countOfGroup - 10) * 16.00; 
+                        }
+                    }
+
+                    else if (countOfGroup >= 10 && countOfGroup <= 20 && typeOfGroup == "Regular")
+                    {
+                        totalPrice -= 0.05;
+                    }
+
+              Console.WriteLine ($"Total price: {totalPrice:f2}");
+            }
+
+        }
+    }
+}
